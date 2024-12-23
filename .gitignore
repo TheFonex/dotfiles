@@ -1,0 +1,6 @@
+# Ignore all files and directories
+*
+!.gitignore
+
+# Do not Ignore directories with .keep file inside them
+!*/.keep
