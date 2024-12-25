@@ -5,6 +5,7 @@
 #+OPTIONS: toc:2
 
 * TABLE OF CONTENTS :toc:
+- [[#emacs-setup][EMACS SETUP]]
 - [[#important-programs][IMPORTANT PROGRAMS]]
   - [[#elpaca-package-manager][Elpaca Package Manager]]
   - [[#load-evil-mode][Load Evil Mode]]
@@ -42,6 +43,19 @@
 - [[#all-the-icons][ALL THE ICONS]]
 - [[#ivy-counsel][IVY (Counsel)]]
 - [[#buffer-move-functions][Buffer Move Functions]]
+
+* EMACS SETUP
+#+begin_src emacs-lisp
+;; Ensure Emacs uses the system clipboard
+(setq select-enable-clipboard t)
+(setq select-enable-primary t) ;; For Linux primary selection support
+(setq save-interprogram-paste-before-kill t)
+;; Enable 24-bit color in Emacs
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+#+end_src
+
 
 * IMPORTANT PROGRAMS
 ** Elpaca Package Manager
@@ -119,6 +133,7 @@
       (setq evil-want-keybinding nil)
       (setq evil-vsplit-window-right t)
       (setq evil-split-window-below t)
+      (setq evil-want-clipboard t)     
       (evil-mode))
   (use-package evil-collection
       :after evil
@@ -146,6 +161,7 @@
 
   (fonex/leader-keys
     "SPC" '(counsel-M-x :wk "Counsel-M-x")
+    "RET" '(org-open-at-point :wk "Open link in org mode")
     "." '(find-file : wk "Find file")
     "fc" '((lambda () (interactive) (find-file "~/.config/emacs/config.org")) :wk "Find emacs config")
     "fr" '(counsel-recentf :wk "Find recent files")
@@ -187,7 +203,7 @@
   (fonex/leader-keys
     "t" '(:ignore t :wk "Toggle")
     "tt" '(visual-line-mode :wk "Toggle truncated lines")
-    "tv" '(vterm-toggle :wk "Toggle vterm"))
+    "tv" '(vterm-toggle-in-current-directory :wk "Toggle vterm"))
 
   (fonex/leader-keys
     "w" '(:ignore :wk "Windows")
@@ -261,7 +277,16 @@ function defined for emacs
   (load-file user-init-file)
   (load-file user-init-file))
 #+end_src
-
+#+begin_src emacs-lisp
+  (defun vterm-toggle-in-current-directory ()
+  "Toggle vterm and change its directory to the current buffer's directory."
+  (interactive)
+  (let ((default-directory
+         (if (buffer-file-name) ;; Check if the buffer is visiting a file
+             (file-name-directory (buffer-file-name)) ;; Use the file's directory
+           default-directory))) ;; Otherwise, use the buffer's default directory
+    (vterm-toggle)))
+#+end_src
 * COMMENTS
 #+begin_src emacs-lisp
   (use-package evil-nerd-commenter)
@@ -274,6 +299,11 @@ function defined for emacs
   (use-package vterm)
   (setq shell-file-name "/bin/zsh"
         vterm-max-scrollback 5000)
+  (setq term-term-name "xterm-256color")
+(add-hook 'vterm-mode-hook
+          (lambda ()
+            (setq-local term-buffer-maximum-size 10000) ;; Increase scrollback
+            (setenv "COLORTERM" "truecolor"))) ;; Set the COLORTERM environment variable
 #+end_src
 
 ** Vterm-Toggle
@@ -406,7 +436,9 @@ defining the various fonts that emacs will use
 
 * LSP-BRIDGE
 #+begin_src emacs-lisp
-
+(add-to-list 'load-path "~/.config/emacs/lsp-bridge/lsp-bridge")
+(require 'lsp-bridge)
+(global-lsp-bridge-mode)
 #+end_src
 * ORG MODE
 ** Enabling Table of Contents
@@ -414,6 +446,8 @@ defining the various fonts that emacs will use
   (use-package toc-org
     :commands toc-org-enable
     :init (add-hook 'org-mode-hook 'toc-org-enable))
+    :config
+    (setq org-return-follows-link t)
 #+end_src
 
 ** Enabling Org Bullets
