@@ -6,11 +6,14 @@ return {
             build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release'
         },
     },
-    --{
-        --{
-            --'cljoly/telescope-repo.nvim',
-        --},
-    --},
+    {
+        {
+            'cljoly/telescope-repo.nvim',
+        },
+    },
+    {
+        'airblade/vim-rooter',
+    },
     {
         'nvim-telescope/telescope.nvim',
         tag = '0.1.8',
@@ -32,7 +35,7 @@ return {
             -- To get fzf loaded and working with telescope, you need to call
             -- load_extension, somewhere after setup function:
             require('telescope').load_extension('fzf')
-            --require('telescope').load_extension('repo')
+            require('telescope').load_extension('repo')
         end
     },
 }

@@ -5,3 +5,7 @@ vim.o.shiftwidth = 4 -- Number of spaces inserted when indenting
 
 
 vim.o.relativenumber = true
+vim.o.number = true 
+vim.o.shell = '/bin/bash -i'
+
+vim.g.rooter_cd_cmd = 'lcd'
