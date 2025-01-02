@@ -1,10 +1,9 @@
-[submodule "alacritty/tokyo-night-alacritty-theme"]
-path = alacritty/tokyo-night-alacritty-theme
-url = https://github.com/zatchheems/tokyo-night-alacritty-theme
-
 [submodule "zsh/.oh-my-zsh"]
 path = zsh/.oh-my-zsh
 url = https://github.com/ohmyzsh/ohmyzsh
 [submodule "zsh/external/headline"]
 	path = zsh/external/headline
 	url = https://github.com/Moarram/headline
+[submodule "kitty/tokyo-night-kitty-theme"]
+	path = kitty/tokyo-night-kitty-theme
+	url = https://github.com/davidmathers/tokyo-night-kitty-theme
