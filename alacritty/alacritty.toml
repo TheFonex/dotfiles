@@ -12,3 +12,5 @@ import = [
     save_to_clipboard = true
 [cursor]
     unfocused_hollow = true
+[env]
+    TERM = "xterm-256color"
