@@ -3,7 +3,6 @@ return {
     {
         'AckslD/swenv.nvim',
         ddependencies = { 'nvim-lua/plenary.nvim' },
-        event = "VeryLazy",
         config = function()
             require('swenv').setup({
                 -- Should return a list of tables with a `name` and a `path` entry each.

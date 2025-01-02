@@ -6,3 +6,5 @@
 !nvim/**
 !zsh
 !zsh/**
+!alacritty
+!alacritty/**
