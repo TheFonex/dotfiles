@@ -1,0 +1,19 @@
+# PYBEST EXPORTS
+
+export PYBEST_HOME=$HOME/Dev/pybest
+export PYTHONPATH=$PYBEST_HOME/src:$PYTHONPATH
+export LIBINT2_ROOT=$PYBEST_HOME/depends/libint-upstream/installdir
+export LIBCHOL_ROOT=$PYBEST_HOME/depends/libchol-upstream/installdir # NOTE: if not set PyBEST won't try to build against libchol
+export PYBEST_USE_MKL=1                                              # if not set will default to OpenBLAS
+export MKL_DIR="/opt/intel/oneapi/mkl/2025.0"
+export MKL_ROOT="/opt/intel/oneapi/mkl/2025.0"
+
+alias python=python3
+
+export LD_LIBRARY_PATH=$MKL_ROOT/lib/:$LIBINT2_ROOT/lib:$LD_LIBRARY_PATH
+
+export LD_LIBRARY_PATH=$LIBCHOL_ROOT/lib:$LD_LIBRARY_PATH
+
+
+# WEZTERM EXPORT
+export WEZTERM_CONFIG_FILE=~/.config/wezterm/wezterm.lua
