@@ -71,7 +71,7 @@ zstyle ':omz:update' mode auto # update automatically without asking
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git z vscode python git-prompt)
+plugins=(git python git-prompt)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -104,6 +104,9 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+alias n="nvim"
+alias y="yazi"
+
 # User Defines Source
 
 source $HOME/.config/zsh/.exports
@@ -111,3 +114,9 @@ source $HOME/.config/zsh/.exports
 
 # theme
 source $ZSH_EXTERNAL/headline/headline.zsh-theme
+
+
+
+if uwsm check may-start && uwsm select; then
+	exec uwsm start default
+fi
