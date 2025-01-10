@@ -70,7 +70,7 @@ return {
                         disableOrganizeImports = true,
                         typeCheckingMode = 'off',
                     },
-                };
+                },
             })
         end
     },
@@ -78,5 +78,13 @@ return {
         "zeioth/garbage-day.nvim",
         dependencies = "neovim/nvim-lspconfig",
         event = "VeryLazy",
+    },
+    -- diagnostic
+    {
+        {
+            "folke/trouble.nvim",
+            opts = {}, -- for default options, refer to the configuration section for custom setup.
+            cmd = "Trouble"
+        }
     },
 }

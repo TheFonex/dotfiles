@@ -12,9 +12,6 @@ return {
         },
     },
     {
-        'airblade/vim-rooter',
-    },
-    {
         'nvim-telescope/telescope.nvim',
         tag = '0.1.8',
         dependencies = { 'nvim-lua/plenary.nvim', 'BurntSushi/ripgrep' },
@@ -24,10 +21,10 @@ return {
             require('telescope').setup {
                 extensions = {
                     fzf = {
-                        fuzzy = true, -- false will only do exact matching
+                        fuzzy = true,                   -- false will only do exact matching
                         override_generic_sorter = true, -- override the generic sorter
-                        override_file_sorter = true, -- override the file sorter
-                        case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+                        override_file_sorter = true,    -- override the file sorter
+                        case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
                         -- the default case_mode is "smart_case"
                     }
                 }
@@ -36,6 +33,16 @@ return {
             -- load_extension, somewhere after setup function:
             require('telescope').load_extension('fzf')
             require('telescope').load_extension('repo')
+            require('telescope').load_extension('projects')
         end
     },
+    {
+        "ahmedkhalf/project.nvim",
+        config = function()
+            require("project_nvim").setup({
+                silent_chdir = true,                    -- Notify when the root is changed
+                patterns = {"build", ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json", "Cargo.toml" },
+            })
+        end,
+    }
 }
