@@ -27,7 +27,7 @@ wk.add({
     { "<leader>go",    lsp_builtin.type_definition,                         desc = 'Go to Type Definition',         mode = "n" },
     { "<leader>gr",    lsp_builtin.references,                              desc = 'Show References',               mode = "n" },
     { "<leader>gs",    lsp_builtin.signature_help,                          desc = "Display Signature Information", mode = "n" },
-    { "<leader>ge",    vim.lsp.diagnostic.show_line_diagnostics,            desc = "Show Line Diagnostics",         mode = "n" },
+    { "<leader>ge",    vim.diagnostic.open_float,                       desc = "Show Line Diagnostics",         mode = "n" },
     { "<leader>g<F2>", lsp_builtin.rename,                                  desc = "Rename Symbol",                 mode = "n" },
     { "<leader>gf",    function() lsp_builtin.format({ async = true }) end, desc = "Reformat Buffer",               mode = { "n", "x" } },
     { "<leader>g<F4>", lsp_builtin.code_action,                             desc = "Select Code Action",            mode = "n" },
